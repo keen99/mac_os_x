@@ -21,13 +21,17 @@
 # limitations under the License.
 #
 
+## ignore failure - depending on login state, these might not be running when chef runs.
 execute "killall Dock" do
+  ignore_failure true
   action :nothing
 end
 execute "killall Finder" do
+  ignore_failure true
   action :nothing
 end
 execute "killall loginwindow" do
+  ignore_failure true
   action :nothing
 end
 
