@@ -24,6 +24,12 @@
 execute "killall Dock" do
   action :nothing
 end
+execute "killall Finder" do
+  action :nothing
+end
+execute "killall loginwindow" do
+  action :nothing
+end
 
 node['mac_os_x']['settings'].each do |domain,settings|
   settings.each do |k,v|
@@ -37,6 +43,9 @@ node['mac_os_x']['settings'].each do |domain,settings|
       sudo true if settings['domain'] =~ /^\/Library\/Preferences/
       global true if settings['domain'] =~ /^NSGlobalDomain$/
       notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dock$/
+      notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dashboard$/
+      notifies :run, "execute[killall Finder]" if settings['domain'] =~ /^com.apple.finder$/
+      notifies :run, "execute[killall loginwindow]" if settings['domain'] =~ /^com.apple.spaces$/
     end
   end
 end
