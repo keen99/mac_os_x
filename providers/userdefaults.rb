@@ -37,7 +37,7 @@ def load_current_resource
 
   v = shell_out("#{drcmd} | grep -qx '#{truefalse || new_resource.value}'", shell_out_opts)
   is_set = v.exitstatus == 0 ? true : false
-  Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} test result: [ #{v} ] [ #{v.exitstatus} ] ")
+  Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} test result: [ #{v.stdout} ] [ #{v.stderr} ] [ #{v.exitstatus} ] ")
   @userdefaults.is_set(is_set)
 end
 
