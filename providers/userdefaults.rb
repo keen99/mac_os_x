@@ -52,7 +52,11 @@ action :write do
       cmd << "'#{new_resource.domain}'"
     end
 
-    timestampcmd = cmd
+    #clone the array...
+    timestampcmd = []
+    cmd.each do |e|
+      timestampcmd << e.clone
+    end
     cmd << "'#{new_resource.key}'" if new_resource.key
 
     type = new_resource.type
