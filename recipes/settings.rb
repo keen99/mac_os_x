@@ -56,7 +56,7 @@ node['mac_os_x']['settings'].each do |domain,settings|
       domain settings['domain']
       user node['mac_os_x']['settings_user']
       key 'mac_os_x_userdefaults'
-      value Time.new.strftime("%Y%m%d%H%M%S")
+      value "#{k}.#{Time.new.strftime("%Y%m%d%H%M%S")}"
       sudo true if settings['domain'] =~ /^\/Library\/Preferences/
       global true if settings['domain'] =~ /^NSGlobalDomain$/
     end
