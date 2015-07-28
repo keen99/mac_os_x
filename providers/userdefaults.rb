@@ -32,7 +32,8 @@ def load_current_resource
   drcmd << "'#{new_resource.key}' " if new_resource.key
   shell_out_opts = {}
   shell_out_opts[:user] = new_resource.user unless new_resource.user.nil?
-  Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} current value: #{shell_out("#{drcmd}'", shell_out_opts)} ")
+  vlong = shell_out("#{drcmd}'", shell_out_opts)}
+  Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} current value: stdout: [ #{vlong.stdout} ] stderr: [ #{vlong.stderr} ] ")
 
   v = shell_out("#{drcmd} | grep -qx '#{truefalse || new_resource.value}'", shell_out_opts)
   is_set = v.exitstatus == 0 ? true : false
