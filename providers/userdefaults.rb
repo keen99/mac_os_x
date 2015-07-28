@@ -25,15 +25,18 @@ def load_current_resource
   @userdefaults = Chef::Resource::MacOsXUserdefaults.new(new_resource.name)
   @userdefaults.key(new_resource.key)
   @userdefaults.domain(new_resource.domain)
-  Chef::Log.debug("Checking #{new_resource.domain} value")
+  Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} new value: #{new_resource.value}")
   truefalse = 1 if [true, 'TRUE','1','true','YES','yes'].include?(new_resource.value)
   truefalse = 0 if [false, 'FALSE','0','false','NO','no'].include?(new_resource.value)
   drcmd = "defaults read '#{new_resource.domain}' "
   drcmd << "'#{new_resource.key}' " if new_resource.key
   shell_out_opts = {}
   shell_out_opts[:user] = new_resource.user unless new_resource.user.nil?
+  Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} current value: #{shell_out("#{drcmd}'", shell_out_opts)} ")
+
   v = shell_out("#{drcmd} | grep -qx '#{truefalse || new_resource.value}'", shell_out_opts)
   is_set = v.exitstatus == 0 ? true : false
+  Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} test result: [ #{v} ] [ #{is_set}")
   @userdefaults.is_set(is_set)
 end
 
