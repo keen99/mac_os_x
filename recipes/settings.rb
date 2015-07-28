@@ -25,4 +25,4 @@
 ##make this a define, so we can consume it again
 
 #and call the define so we get the same behavior
-mac_os_x_updatedefaults
+updatedefaults
