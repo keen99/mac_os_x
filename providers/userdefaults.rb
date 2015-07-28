@@ -52,6 +52,7 @@ action :write do
       cmd << "'#{new_resource.domain}'"
     end
 
+    timestampcmd = cmd
     cmd << "'#{new_resource.key}'" if new_resource.key
 
     type = new_resource.type
@@ -76,9 +77,22 @@ action :write do
 
     cmd << "-#{type}" if type
     cmd << value
+
+    timestampcmd << "'#{new_resource.key}'" if new_resource.key
+    timestampcmd << "#{new_resource.key}.#{Time.new.strftime("%Y%m%d%H%M%S")}"
+    execute "timestampcmd" do
+      command timestampcmd.join(' ')
+      user new_resource.user unless new_resource.user.nil?
+      action :nothing
+    end
     execute cmd.join(' ') do
       user new_resource.user unless new_resource.user.nil?
+      notifies :run, 'execute[timestampcmd]'
     end
+
+
+
+
     new_resource.updated_by_last_action(true)
   end
 end

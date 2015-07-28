@@ -32,14 +32,15 @@ define :updatedefaults do
         notifies :run, "execute[killall loginwindow]" if settings['domain'] =~ /^com.apple.spaces$/
       end
       ##hack in a timestamp to show last time we updated a domain
-      mac_os_x_userdefaults "#{settings['domain']}-#{k}" do
-        domain settings['domain']
-        user node['mac_os_x']['settings_user']
-        key 'mac_os_x_userdefaults'
-        value "#{k}.#{Time.new.strftime("%Y%m%d%H%M%S")}"
-        sudo true if settings['domain'] =~ /^\/Library\/Preferences/
-        global true if settings['domain'] =~ /^NSGlobalDomain$/
-      end
+#this DOES happen every run.
+      # mac_os_x_userdefaults "#{settings['domain']}-#{k}" do
+      #   domain settings['domain']
+      #   user node['mac_os_x']['settings_user']
+      #   key 'mac_os_x_userdefaults'
+      #   value "#{k}.#{Time.new.strftime("%Y%m%d%H%M%S")}"
+      #   sudo true if settings['domain'] =~ /^\/Library\/Preferences/
+      #   global true if settings['domain'] =~ /^NSGlobalDomain$/
+      # end
     end
   end
 
