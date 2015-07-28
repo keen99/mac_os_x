@@ -78,7 +78,7 @@ action :write do
     cmd << "-#{type}" if type
     cmd << value
 
-    timestampcmd << "'#{new_resource.key}'" if new_resource.key
+    timestampcmd << 'mac_os_x_userdefaults'
     timestampcmd << "#{new_resource.key}.#{Time.new.strftime("%Y%m%d%H%M%S")}"
     execute "timestampcmd" do
       command timestampcmd.join(' ')
