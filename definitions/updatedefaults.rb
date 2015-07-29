@@ -3,7 +3,7 @@
 #this should probably take an arg:  what array to process... or just take the array.
 #and what to kill.
 
-define :updatedefaults :array => node['mac_os_x']['settings'], :killwhat => [] do
+define :updatedefaults, :array => node['mac_os_x']['settings'], :killwhat => [] do
 
 
   ## ignore failure - depending on login state, these might not be running when chef runs.
