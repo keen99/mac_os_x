@@ -43,7 +43,7 @@ define :updatedefaults, :killwhat => [] do
         sudo true if settings['domain'] =~ /^\/Library\/Preferences/
         global true if settings['domain'] =~ /^NSGlobalDomain$/
 ##uh for multiples.. need a loop here
-       notifies :run, "execute[killall #{params[:killwhat].to_s}]" if params[:killwhat].is_set
+       notifies :run, "execute[killall #{params[:killwhat].to_s}]" if ! params[:killwhat].to_a.empty?
         notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dock$/
         notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dashboard$/
         notifies :run, "execute[killall Finder]" if settings['domain'] =~ /^com.apple.finder$/
