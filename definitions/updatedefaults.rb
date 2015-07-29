@@ -1,4 +1,7 @@
 
+
+#this should probably take an arg:  what array to process... or just take the array.
+
 define :updatedefaults do
 
   ## ignore failure - depending on login state, these might not be running when chef runs.
@@ -31,16 +34,6 @@ define :updatedefaults do
         notifies :run, "execute[killall Finder]" if settings['domain'] =~ /^com.apple.finder$/
         notifies :run, "execute[killall loginwindow]" if settings['domain'] =~ /^com.apple.spaces$/
       end
-      ##hack in a timestamp to show last time we updated a domain
-#this DOES happen every run.
-      # mac_os_x_userdefaults "#{settings['domain']}-#{k}" do
-      #   domain settings['domain']
-      #   user node['mac_os_x']['settings_user']
-      #   key 'mac_os_x_userdefaults'
-      #   value "#{k}.#{Time.new.strftime("%Y%m%d%H%M%S")}"
-      #   sudo true if settings['domain'] =~ /^\/Library\/Preferences/
-      #   global true if settings['domain'] =~ /^NSGlobalDomain$/
-      # end
     end
   end
 

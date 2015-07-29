@@ -38,6 +38,10 @@ def load_current_resource
   v = shell_out("#{drcmd} | grep -qx '#{truefalse || new_resource.value}'", shell_out_opts)
   is_set = v.exitstatus == 0 ? true : false
   Chef::Log.debug("Checking #{new_resource.domain} #{new_resource.key} test result: [ #{v.stdout} ] [ #{v.stderr} ] [ #{v.exitstatus} ] ")
+
+##reduce this logging to a single event please....
+
+
   @userdefaults.is_set(is_set)
 end
 
@@ -83,7 +87,8 @@ action :write do
     cmd << value
 
     timestampcmd << 'mac_os_x_userdefaults'
-    timestampcmd << "#{new_resource.key}.#{Time.new.strftime("%Y%m%d%H%M%S")}"
+    #send single quotes in so spaces are ok in this key
+    timestampcmd << "'#{new_resource.key}.#{Time.new.strftime("%Y%m%d%H%M%S")}'"
     execute "timestampcmd" do
       command timestampcmd.join(' ')
       user new_resource.user unless new_resource.user.nil?
@@ -93,9 +98,6 @@ action :write do
       user new_resource.user unless new_resource.user.nil?
       notifies :run, 'execute[timestampcmd]'
     end
-
-
-
 
     new_resource.updated_by_last_action(true)
   end
