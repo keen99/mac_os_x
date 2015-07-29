@@ -23,6 +23,7 @@ define :updatedefaults, :killwhat => [] do
 
 
   params[:killwhat].each do |killwhat|
+    log "DSR: killwhat #{killwhat}"
     execute "killall #{killwhat}" do
       ignore_failure true
       action :nothing
