@@ -8,7 +8,7 @@
 
 ### without a param, we just process the whole set over and over again
 ### in my sample, chef run takes:
-
+# 1:53  2m1 2m5s
 
 ### with a param, we just process what we were told to (could be a subset of the whole, or it's own array)
 ### in my sample, chef run
@@ -28,8 +28,6 @@ define :updatedefaults, :processwhat => [], :killwhat => [] do
     mode="params"
     log "updatedefaults: using param"
   end
-
-  processwhat=node['mac_os_x']['settings']
 
 
   ## 2 for the default, 1 for something we pass in.
