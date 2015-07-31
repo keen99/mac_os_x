@@ -31,7 +31,7 @@ end
 
 ##find the depth of our array we were handed.
 
-  arr=processwht
+  arr=processwhat
   b, depth = arr.dup, 1
   until b==arr.flatten
     depth+=1
