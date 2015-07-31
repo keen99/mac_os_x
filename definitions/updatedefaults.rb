@@ -17,8 +17,7 @@ else
 end
 
 
-
-raise "DSR param testing.  [[ #{params[:processwhat]} ]]"
+#raise "DSR param testing.  [[ #{params[:processwhat]} ]]"
 
 
   ## ignore failure - depending on login state, these might not be running when chef runs.
