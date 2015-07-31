@@ -63,7 +63,7 @@ def hash_traverse(hash)
         return d
 end
 
-puts "#{mode} NewHash Array depth: #{hash_traverse(processwhat, 1)}"
+puts "#{mode} NewHash Array depth: #{hash_traverse(processwhat)}"
 
 puts "#{mode} New Array depth: #{count_subarrays(processwhat.to_a)}"
 puts "#{mode} wtf depth #{processwhat.class}"
