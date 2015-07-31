@@ -9,6 +9,10 @@
 define :updatedefaults, :processwhat => node['mac_os_x']['settings'], :killwhat => [] do
 
 
+
+raise "param testing.  [[ #{params[:processwhat]} ]]"
+
+
   ## ignore failure - depending on login state, these might not be running when chef runs.
 
   execute "killall Dock" do
