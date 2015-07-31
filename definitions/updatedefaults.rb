@@ -44,56 +44,55 @@ puts "Array depth: #{depth}" #=> 4
 
   log "updatedefaults: updating |depth #{depth}| [ #{(processwhat).inspect} ] [[ #{processwhat} ]]"
 
-return "out"
 
 
-  ## ignore failure - depending on login state, these might not be running when chef runs.
+#   ## ignore failure - depending on login state, these might not be running when chef runs.
 
-  execute "killall Dock" do
-    ignore_failure true
-    action :nothing
-  end
-  execute "killall Finder" do
-    ignore_failure true
-    action :nothing
-  end
-  execute "killall loginwindow" do
-    ignore_failure true
-    action :nothing
-  end
-
-
-  params[:killwhat].each do |killwhat|
-    log "DSR: killwhat #{killwhat}"
-    execute "killall #{killwhat}" do
-      ignore_failure true
-      action :nothing
-    end
-  end
+#   execute "killall Dock" do
+#     ignore_failure true
+#     action :nothing
+#   end
+#   execute "killall Finder" do
+#     ignore_failure true
+#     action :nothing
+#   end
+#   execute "killall loginwindow" do
+#     ignore_failure true
+#     action :nothing
+#   end
 
 
+#   params[:killwhat].each do |killwhat|
+#     log "DSR: killwhat #{killwhat}"
+#     execute "killall #{killwhat}" do
+#       ignore_failure true
+#       action :nothing
+#     end
+#   end
 
-  processwhat.each do |domain,settings|
-    settings.each do |k,v|
-      next if k == 'domain'
 
-      mac_os_x_userdefaults "#{settings['domain']}-#{k}" do
-        domain settings['domain']
-        user node['mac_os_x']['settings_user']
-        key k
-        value v
-        sudo true if settings['domain'] =~ /^\/Library\/Preferences/
-        global true if settings['domain'] =~ /^NSGlobalDomain$/
-##uh for multiples.. need a loop here
-     params[:killwhat].each do |killwhat|
-       notifies :run, "execute[killall #{killwhat.to_s}]" if ! params[:killwhat].to_a.empty?
-     end
-        notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dock$/
-        notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dashboard$/
-        notifies :run, "execute[killall Finder]" if settings['domain'] =~ /^com.apple.finder$/
-        notifies :run, "execute[killall loginwindow]" if settings['domain'] =~ /^com.apple.spaces$/
-      end
-    end
-  end
+
+#   processwhat.each do |domain,settings|
+#     settings.each do |k,v|
+#       next if k == 'domain'
+
+#       mac_os_x_userdefaults "#{settings['domain']}-#{k}" do
+#         domain settings['domain']
+#         user node['mac_os_x']['settings_user']
+#         key k
+#         value v
+#         sudo true if settings['domain'] =~ /^\/Library\/Preferences/
+#         global true if settings['domain'] =~ /^NSGlobalDomain$/
+# ##uh for multiples.. need a loop here
+#      params[:killwhat].each do |killwhat|
+#        notifies :run, "execute[killall #{killwhat.to_s}]" if ! params[:killwhat].to_a.empty?
+#      end
+#         notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dock$/
+#         notifies :run, "execute[killall Dock]" if settings['domain'] =~ /^com.apple.dashboard$/
+#         notifies :run, "execute[killall Finder]" if settings['domain'] =~ /^com.apple.finder$/
+#         notifies :run, "execute[killall loginwindow]" if settings['domain'] =~ /^com.apple.spaces$/
+#       end
+#     end
+#   end
 
 end
