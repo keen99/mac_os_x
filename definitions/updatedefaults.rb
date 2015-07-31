@@ -22,9 +22,10 @@ define :updatedefaults, :processwhat => [], :killwhat => [] do
 if params[:processwhat].to_a.empty?
   processwhat=node['mac_os_x']['settings']
   log "updatedefaults: using default"
+  mode="defaults"
 else
   processwhat=params[:processwhat]
-
+  mode="params"
 
   log "updatedefaults: using param"
 end
@@ -37,8 +38,23 @@ end
     depth+=1
     b=b.flatten(1)
   end
-puts "Array depth: #{depth}" #=> 4
+puts "#{mode} Array depth: #{depth}" #=> 4
 
+## feh, depth = 2 in both cases.
+
+
+def count_subarrays array
+  return 0 unless array && array.is_a?(Array)
+
+  nested = array.select { |e| e.is_a?(Array) }
+  if nested.empty?
+    1 # this is a leaf
+  else
+    nested.inject(0) { |sum, ary| sum + count_subarrays(ary) }
+  end
+end
+
+puts "#{mode} New Array depth: #{count_subarrays(processwhat)}"
 
 
 
