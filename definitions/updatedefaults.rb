@@ -6,7 +6,7 @@
 ###so I get the feeling, rightly so, that EVERY time I call back to this...they all process
 ##that's not great.
 
-define :updatedefaults, :killwhat => [] do
+define :updatedefaults, :processwhat => node['mac_os_x']['settings'], :killwhat => [] do
 
 
   ## ignore failure - depending on login state, these might not be running when chef runs.
