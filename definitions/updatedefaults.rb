@@ -42,7 +42,7 @@ puts "Array depth: #{depth}" #=> 4
 
 
 
-  log "updatedefaults: updating |depth #{depth}| [ #{(processwhat).inspect} ] [[ #{processwhat} ]]"
+  log "updatedefaults: updating |depth #{depth}| [[ #{processwhat} ]]"
 
 
 
