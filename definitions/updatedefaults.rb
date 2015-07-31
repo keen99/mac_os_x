@@ -24,11 +24,25 @@ if params[:processwhat].to_a.empty?
   log "updatedefaults: using default"
 else
   processwhat=params[:processwhat]
+
+
   log "updatedefaults: using param"
 end
 
+##find the depth of our array we were handed.
 
-  log "updatedefaults: updating [ #{(processwhat).inspect} ] [[ #{processwhat} ]]"
+  arr=processwht
+  b, depth = arr.dup, 1
+  until b==arr.flatten
+    depth+=1
+    b=b.flatten(1)
+  end
+puts "Array depth: #{depth}" #=> 4
+
+
+
+
+  log "updatedefaults: updating |depth #{depth}| [ #{(processwhat).inspect} ] [[ #{processwhat} ]]"
 
 
 
