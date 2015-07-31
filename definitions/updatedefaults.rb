@@ -54,6 +54,20 @@ def count_subarrays array
   end
 end
 
+def hash_traverse(hash, depth)
+  hash.keys().each do |i|
+    depth += 1 if i == 'children' and hash[i].length > 1
+    if hash[i].class == Array
+      depth = array_traverse(hash[i], depth)
+    elsif hash[i].class == Hash
+      depth = hash_traverse(hash[i], depth)
+    end
+  end
+  return depth
+end
+
+puts "#{mode} New2 Array depth: #{hash_traverse(process, 1)}"
+
 puts "#{mode} New Array depth: #{count_subarrays(processwhat.to_a)}"
 puts "#{mode} wtf depth #{processwhat.class}"
 puts "#{mode} wtf else depth #{node['mac_os_x']['settings'].class}"
