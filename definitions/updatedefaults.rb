@@ -44,7 +44,7 @@ puts "Array depth: #{depth}" #=> 4
 
   log "updatedefaults: updating |depth #{depth}| [ #{(processwhat).inspect} ] [[ #{processwhat} ]]"
 
-return
+return "out"
 
 
   ## ignore failure - depending on login state, these might not be running when chef runs.
