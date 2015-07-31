@@ -17,7 +17,21 @@
 
 define :updatedefaults, :processwhat => [], :killwhat => [] do
 
+
+
+
+  if params[:processwhat].to_a.empty?
+    processwhat=node['mac_os_x']['settings']
+    log "updatedefaults: using default"
+    mode="defaults"
+  else
+    processwhat=params[:processwhat]
+    mode="params"
+    log "updatedefaults: using param"
+  end
+
 #  processwhat=node['mac_os_x']['settings']
+
 
   ## 2 for the default, 1 for something we pass in.
   def hash_depth(hash)
@@ -31,19 +45,6 @@ define :updatedefaults, :processwhat => [], :killwhat => [] do
 
   ##find the depth of the mash we were handed.
   depth=hash_depth(processwhat)
-
-if params[:processwhat].to_a.empty?
-  processwhat=node['mac_os_x']['settings']
-  log "updatedefaults: using default"
-  mode="defaults"
-else
-  processwhat=params[:processwhat]
-  mode="params"
-  log "updatedefaults: using param"
-end
-
-
-
 
 
 
