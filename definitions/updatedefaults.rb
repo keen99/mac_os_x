@@ -10,14 +10,14 @@ define :updatedefaults, :processwhat => [], :killwhat => [] do
 
 if params[:processwhat].to_a.empty?
   processwhat=node['mac_os_x']['settings']
-#  raise "DSR: default what [[ #{processwhat}]]"
+  log "DSR: default what [[ #{processwhat}]]"
 else
   processwhat=params[:processwhat]
-  raise "DSR: set what [[ #{processwhat} ]]"
+  log "DSR: set what [[ #{processwhat} ]]"
 end
 
 
-#raise "DSR param testing.  [[ #{params[:processwhat]} ]]"
+log "DSR param testing.  [[ #{params[:processwhat]} ]]"
 
 
   ## ignore failure - depending on login state, these might not be running when chef runs.
