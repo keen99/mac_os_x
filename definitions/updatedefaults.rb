@@ -8,19 +8,22 @@
 
 ### without a param, we just process the whole set over and over again
 ### in my sample, chef run takes:
-##real  1m47.461s
+## 1.3-2.5m
+#real  1m58.191s
+
 ### with a param, we just process what we were told to (could be a subset of the whole, or it's own array)
-### in my sample, chef run takes: 2m3.631s
+### in my sample, chef run
+
 
 define :updatedefaults, :processwhat => [], :killwhat => [] do
 
   processwhat=node['mac_os_x']['settings']
 
 if params[:processwhat].to_a.empty?
-#  processwhat=node['mac_os_x']['settings']
+  processwhat=node['mac_os_x']['settings']
   log "updatedefaults: using default"
 else
-#  processwhat=params[:processwhat]
+  processwhat=params[:processwhat]
   log "updatedefaults: using param"
 end
 
