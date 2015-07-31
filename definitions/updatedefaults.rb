@@ -55,7 +55,7 @@ def count_subarrays array
 end
 
 puts "#{mode} New Array depth: #{count_subarrays(processwhat)}"
-
+puts "#{mode} wtf #{processwhat.class}"
 
 
   log "updatedefaults: updating |depth #{depth}| [[ #{processwhat} ]]"
