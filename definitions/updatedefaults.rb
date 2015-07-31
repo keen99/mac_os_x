@@ -6,7 +6,15 @@
 ###so I get the feeling, rightly so, that EVERY time I call back to this...they all process
 ##that's not great.
 
-define :updatedefaults, :processwhat => node['mac_os_x']['settings'], :killwhat => [] do
+define :updatedefaults, :processwhat => [], :killwhat => [] do
+
+if params[:processwhat].to_a.empty?
+  processwhat=node['mac_os_x']['settings']
+  raise "DSR: default what [[ #{processwhat}]]"
+else
+  processwhat=params[:processwhat]
+  raise "DSR: set what [[ #{processwhat} ]]"
+end
 
 
 
