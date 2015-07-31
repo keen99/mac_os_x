@@ -54,16 +54,13 @@ def count_subarrays array
   end
 end
 
-def hash_traverse(hash, depth)
-  hash.keys().each do |i|
-    depth += 1 if i == 'children' and hash[i].length > 1
-    if hash[i].class == Array
-      depth = array_traverse(hash[i], depth)
-    elsif hash[i].class == Hash
-      depth = hash_traverse(hash[i], depth)
-    end
-  end
-  return depth
+def hash_traverse(hash)
+        a = hash.to_a
+        d = 1
+        while (a.flatten!(1).map! {|e| (e.is_a? Hash) ? e.to_a.flatten(1) : (e.is_a? Array) ? e : nil}.compact!.size > 0)
+            d += 1
+        end
+        return d
 end
 
 puts "#{mode} New2 Array depth: #{hash_traverse(processwhat, 1)}"
