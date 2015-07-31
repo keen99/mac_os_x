@@ -28,7 +28,7 @@ else
 end
 
 
-  log "updatedefaults: updating [#{(processwhat).inspect} ][[ #{processwhat}]]"
+  log "updatedefaults: updating [ #{(processwhat).inspect} ] [[ #{processwhat} ]]"
 
 
 
