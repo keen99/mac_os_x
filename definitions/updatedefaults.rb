@@ -3,6 +3,9 @@
 #this should probably take an arg:  what array to process... or just take the array.
 #and what to kill.
 
+###so I get the feeling, rightly so, that EVERY time I call back to this...they all process
+##that's not great.
+
 define :updatedefaults, :killwhat => [] do
 
 
