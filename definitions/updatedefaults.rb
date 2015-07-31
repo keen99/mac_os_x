@@ -32,7 +32,7 @@ end
 
 ##find the depth of our array we were handed.
 
-  arr=processwhat
+  arr=processwhat.to_a
   b, depth = arr.dup, 1
   until b==arr.flatten
     depth+=1
@@ -54,7 +54,7 @@ def count_subarrays array
   end
 end
 
-puts "#{mode} New Array depth: #{count_subarrays(processwhat)}"
+puts "#{mode} New Array depth: #{count_subarrays(processwhat.to_a)}"
 puts "#{mode} wtf depth #{processwhat.class}"
 puts "#{mode} wtf else depth #{node['mac_os_x']['settings'].class}"
 
