@@ -56,6 +56,7 @@ end
 
 puts "#{mode} New Array depth: #{count_subarrays(processwhat)}"
 puts "#{mode} wtf depth #{processwhat.class}"
+puts "#{mode} wtf else depth #{node['mac_os_x']['settings'].class}"
 
 
   log "updatedefaults: updating |depth #{depth}| [[ #{processwhat} ]]"
