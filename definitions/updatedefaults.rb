@@ -12,7 +12,7 @@
 
 ### with a param, we just process what we were told to (could be a subset of the whole, or it's own array)
 ### in my sample, chef run
-## 45s 55s
+## 1:16 45s 55s
 
 define :updatedefaults, :processwhat => [], :killwhat => [] do
 
