@@ -23,8 +23,8 @@
 #
 
 # use this user as the default for all reads/writes, unless overridden with sudo or user
-# using nil leaves the default behavior the same as before
-node.default['mac_os_x']['user'] = nil
+# using current_user leaves the default behavior the same as before
+node.default['mac_os_x']['user'] = node['current_user']
 
 # for the ::settings recipe
 node.default['mac_os_x']['settings_user'] = node['mac_os_x']['user']
