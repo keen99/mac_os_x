@@ -27,7 +27,7 @@
 node.default['mac_os_x']['user'] = nil
 
 # for the ::settings recipe
-node.default['mac_os_x']['settings_user'] = node['current_user']
+node.default['mac_os_x']['settings_user'] = node['mac_os_x']['user']
 node.default['mac_os_x']['settings'] = {}
 
 #######################################################################
